@@ -41,8 +41,8 @@ public class GUI extends JFrame {
     String questHitStay = new String("Hit or Stay?");
     String questPlayMore = new String("Play more?");
 
-    //colors used
-    Color colorBackground = new Color(39,119,20); //Background color
+    //colors used for buttons and backgrounds
+    Color colorBackground = new Color(39, 119, 20);//Background color
     Color colorButton = new Color(37, 203, 204);  //Button Color
 
     //buttons used
@@ -59,7 +59,7 @@ public class GUI extends JFrame {
     int aW = 1300; //Width of Popup window
     int aH = 800;  //Height of Popup window
 
-    //card grid position and dimensions
+    //card grid position and dimensions - this helped with position and placement of the cards
     int gridX = 50; //card x-position
     int gridY = 50; //card y-position
     int gridW = 900; //width of grid was used for placement
@@ -74,9 +74,9 @@ public class GUI extends JFrame {
     int cardH = tCardH - spacing*2;
 
     //booleans about phases
-    boolean hit_stay_q = true;
-    boolean dealer_turn = false;
-    boolean play_more_q = false;
+    boolean hit_stay_q = true; //sets the value to show the hit and value buttons;
+    boolean dealer_turn = false; //sets dealers turn to false which enables the player's turn
+    boolean play_more_q = false; //Hides the yes and no buttons to play more because game is still running.
 
     //player and dealer card array
     ArrayList<Card> pCards = new ArrayList<Card>(); //Player's card
@@ -93,11 +93,11 @@ public class GUI extends JFrame {
     int[] polyY = new int[4];
 
     public GUI() {
-        this.setTitle("Crackerjack");
+        this.setTitle("RJ's Blackjack Game"); //Title of the game (popup window)
         this.setBounds((sW-aW-6)/2, (sH-aH-29)/2, aW+6, aH+29);
-        this.setResizable(false);
+        this.setResizable(false); //Prohibits the user from resizing the game screen with the cursor
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
+        this.setVisible(true); //allows the user to see the window
 
         Board board = new Board();
         this.setContentPane(board);
@@ -109,52 +109,52 @@ public class GUI extends JFrame {
         Click click = new Click();
         this.addMouseListener(click);
 
-        //button stuff
-
+        //Hit button
         ActHit actHit = new ActHit();
         bHit.addActionListener(actHit);
-        bHit.setBounds(1000, 200, 100, 50);
-        bHit.setBackground(colorButton);
-        bHit.setFont(fontButton);
-        bHit.setText("HIT");
-        board.add(bHit);
+        bHit.setBounds(1000, 200, 100, 50); //Sets the x and y position of the button and the size.
+        bHit.setBackground(colorButton); //Sets the color of the button to the variable colorButton which I made similar to cyan blue
+        bHit.setFont(fontButton); //Sets the text font to the variable fontButton which I set to Times New Roman
+        bHit.setText("HIT"); //This is the text on the button
+        board.add(bHit); //Allows the button to be seen on the board
+
 
         ActStay actStay = new ActStay();
         bStay.addActionListener(actStay);
-        bStay.setBounds(1150, 200, 100, 50);
-        bStay.setBackground(colorButton);
-        bStay.setFont(fontButton);
-        bStay.setText("STAY");
-        board.add(bStay);
+        bStay.setBounds(1150, 200, 100, 50); //Sets the x and y position of the button and the size.
+        bStay.setBackground(colorButton); //Sets the color of the button to the variable colorButton which I made similar to cyan blue
+        bStay.setFont(fontButton); //Sets the text font to the variable fontButton which I set to Times New Roman
+        bStay.setText("STAY"); //This is the text on the button
+        board.add(bStay); //Allows the button to be seen on the board
 
         ActYes actYes = new ActYes();
         bYes.addActionListener(actYes);
-        bYes.setBounds(1000, 600, 100, 50);
-        bYes.setBackground(colorButton);
-        bYes.setFont(fontButton);
-        bYes.setText("YES");
-        board.add(bYes);
+        bYes.setBounds(1000, 600, 100, 50); //Sets the x and y position of the button and the size.
+        bYes.setBackground(colorButton); //Sets the color of the button to the variable colorButton which I made similar to cyan blue
+        bYes.setFont(fontButton); //Sets the text font to the variable fontButton which I set to Times New Roman
+        bYes.setText("YES"); //This is the text on the button
+        board.add(bYes); //Allows the button to be seen on the board
 
         ActNo actNo = new ActNo();
         bNo.addActionListener(actNo);
-        bNo.setBounds(1150, 600, 100, 50);
-        bNo.setBackground(colorButton);
-        bNo.setFont(fontButton);
-        bNo.setText("NO");
-        board.add(bNo);
+        bNo.setBounds(1150, 600, 100, 50); //Sets the x and y position of the button and the size.
+        bNo.setBackground(colorButton); //Sets the color of the button to the variable colorButton which I made similar to cyan blue
+        bNo.setFont(fontButton); //Sets the text font to the variable fontButton which I set to Times New Roman
+        bNo.setText("NO"); //This is the text on the button
+        board.add(bNo); //Allows the button to be seen on the board
 
         //creating all cards
 
-        String temp_str = "starting_temp_str_name";
+        String temp_str = "starting_temp_str_name"; //sets a fake name to the Suits
         for (int i = 0; i < 52; i++) {
             if (i % 4 == 0) {
-                temp_str = "Spades";
+                temp_str = "Spades"; //Creates the Spades Suit
             } else if (i % 4 == 1) {
-                temp_str = "Hearts";
+                temp_str = "Hearts"; //Creates the Hearts Suit
             } else if (i % 4 == 2) {
-                temp_str = "Diamonds";
+                temp_str = "Diamonds"; //Creates the Diamonds Suit
             } else if (i % 4 == 3) {
-                temp_str = "Clubs";
+                temp_str = "Clubs"; //Creates the Clubs Suits
             }
             Cards.add(new Card((i/4) + 1, temp_str, i));
         }
@@ -200,6 +200,7 @@ public class GUI extends JFrame {
 		*/
     }
 
+    //Works the total scored and checks the number of Aces
     public void totalsChecker() {
 
         int acesCount;
@@ -236,9 +237,11 @@ public class GUI extends JFrame {
             dMaxTotal += 10;
     }
 
-    public void setWinner() {
-        int pPoints = 0;
-        int dPoints = 0;
+    //Works as the score board
+    public void setWinner()
+    {
+        int pPoints = 0; //On startup, it sets player wins to zero
+        int dPoints = 0; //On startup, it sets dealer wins to zero
 
         if (pMaxTotal > 21) {
             pPoints = pMinTotal;
@@ -253,23 +256,24 @@ public class GUI extends JFrame {
         }
 
         if (pPoints > 21 && dPoints > 21) {
-            Log.add(new Message("Nobody wins!", "Dealer"));
+            Log.add(new Message("Nobody wins!", "Dealer")); //If both dealer and player busted, no one wins
         } else if (dPoints > 21) {
             Log.add(new Message("You win!", "Player"));
-            Main.pWins++;
+            Main.pWins++; //Adds a point to player's wins
         } else if (pPoints > 21) {
             Log.add(new Message("Dealer wins!", "Dealer"));
-            Main.dWins++;
+            Main.dWins++; //Ads a point to dealer's wins
         } else if (pPoints > dPoints) {
             Log.add(new Message("You win!", "Player"));
-            Main.pWins++;
+            Main.pWins++; //Adds a point to player's wins
         } else {
             Log.add(new Message("Dealer wins!", "Dealer"));
-            Main.dWins++;
+            Main.dWins++; //Adds a point to dealer's wins
         }
 
     }
 
+    //Runs the program that decides if the dealer will stay or take a hit
     public void dealerHitStay() {
         dHitter = true;
 
@@ -329,27 +333,28 @@ public class GUI extends JFrame {
         dHitter = false;
     }
 
-    public void refresher() {
+    public void refresher()
+    {
 
         if (hit_stay_q == true) {
-            bHit.setVisible(true);
-            bStay.setVisible(true);
+            bHit.setVisible(true); //If it asks to hit or stay, the hit button is visible
+            bStay.setVisible(true); //If it asks to hit or stay, the stay button is visible
         } else {
-            bHit.setVisible(false);
-            bStay.setVisible(false);
+            bHit.setVisible(false); //If it asks to play more, the hit button is not visible
+            bStay.setVisible(false); //If it asks to play more, the stay button is visible
         }
 
         if (dealer_turn == true) {
             if (dHitter == false)
-                dealerHitStay();
+                dealerHitStay(); //If its the dealer's turn and he doesn't hit, he will automatically stay
         }
 
         if (play_more_q == true) {
-            bYes.setVisible(true);
-            bNo.setVisible(true);
+            bYes.setVisible(true); //If it asks to play more, the yes button is visible
+            bNo.setVisible(true); //If it asks to play more, the no button is visible
         } else {
-            bYes.setVisible(false);
-            bNo.setVisible(false);
+            bYes.setVisible(false); //If it asks to hit or stay, the yes button is not visible
+            bNo.setVisible(false); //If it asks to hit or stay, the no button is not visible
         }
 
         totalsChecker();
@@ -388,8 +393,8 @@ public class GUI extends JFrame {
 
         public void paintComponent(Graphics g) {
             //background
-            g.setColor(colorBackground);
-            g.fillRect(0, 0, aW, aH);
+            g.setColor(colorBackground); //the color that the background will be
+            g.fillRect(0, 0, aW, aH); //fills the rectangle with that color
 
             //questions
             if (hit_stay_q == true) {
@@ -409,8 +414,10 @@ public class GUI extends JFrame {
                 g.setFont(fontQuest);
                 g.drawString(questPlayMore, gridX+gridW+70, gridY+490);
             }
-		/*
-			g.setColor(Color.pink);
+
+            //This was how I made the grid so that I could know where to position to cards
+            /*
+			g.setColor(Color.white);
 			g.drawRect(gridX, gridY, gridW, gridH);
 			for (int i = 0; i < 6; i++) {
 				for (int j = 0; j < 2; j++) {
@@ -420,6 +427,7 @@ public class GUI extends JFrame {
 			g.drawRect(gridX+gridW+50, gridY, 250, 400);
 			g.drawRect(gridX, gridY+gridH+50, gridW, 250);
 			*/
+
             g.setColor(Color.black);
             g.fillRect(gridX, gridY+gridH+50, gridW, 500);
 
@@ -462,11 +470,14 @@ public class GUI extends JFrame {
 
                 g.drawString(c.symbol, gridX+spacing+tCardW*index+rounding, gridY+spacing+cardH-rounding);
 
+                //Drawing the Hearts Suit
                 if (c.shape.equalsIgnoreCase("Hearts")) {
                     g.fillOval(gridX+tCardW*index+42, gridY+70, 35, 35);
                     g.fillOval(gridX+tCardW*index+73, gridY+70, 35, 35);
                     g.fillArc(gridX+tCardW*index+30, gridY+90, 90, 90, 51, 78);
-                } else if (c.shape.equalsIgnoreCase("Diamonds")) {
+                }
+                //Drawing the Diamonds Suit
+                else if (c.shape.equalsIgnoreCase("Diamonds")) {
                     polyX[0] = gridX+tCardW*index+75;
                     polyX[1] = gridX+tCardW*index+50;
                     polyX[2] = gridX+tCardW*index+75;
@@ -476,7 +487,9 @@ public class GUI extends JFrame {
                     polyY[2] = gridY+140;
                     polyY[3] = gridY+100;
                     g.fillPolygon(polyX, polyY, 4);
-                } else if (c.shape.equalsIgnoreCase("Spades")) {
+                }
+                //Drawing the Spades Suit
+                else if (c.shape.equalsIgnoreCase("Spades")) {
                     g.fillOval(gridX+tCardW*index+42, gridY+90, 35, 35);
                     g.fillOval(gridX+tCardW*index+73, gridY+90, 35, 35);
                     g.fillArc(gridX+tCardW*index+30, gridY+15, 90, 90, 51+180, 78);
