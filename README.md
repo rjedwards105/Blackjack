@@ -1,2 +1,2 @@
 # Blackjack
-CSA Final Project
+CSA Final Project made by Ronald Edwards II
