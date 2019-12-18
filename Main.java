@@ -1,5 +1,4 @@
-public class Main implements Runnable 
-{
+public class Main implements Runnable {
 
     long xTime = System.nanoTime();
     public static boolean terminator = false;
