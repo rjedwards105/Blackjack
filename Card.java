@@ -1,11 +1,11 @@
 public class Card
 {
-    String name;
-    int value;
-    String shape;
-    boolean used = false;
+    String name; //variable used for card name
+    int value; //variable used for card value 0...13
+    String shape; //variable used for the SUIT
+    boolean used = false; //variable to know if the card had been drawn before
     int id;
-    String symbol;
+    String symbol; //variable used for the symbol like if the value was 13 it was a King so the symbol would be K
 
     public Card(int n, String s, int z) {
         if (n > 1 && n < 11) {
